@@ -29,6 +29,15 @@ struct Ledger {
     utxos: HashMap<String, Utxo>,
 }
 
+impl Ledger{//Create a new and empty ledger
+    fn new() -> Self{//constructor
+        Self{
+            utxos: HashMap::new(),
+        }
+    }
+}
+
 fn main() {
-    println!("UTXO Ledger starting...");
+    let ledger = Ledger::new();
+    println!("UTXO Ledger initialization {:#?}", ledger);
 }
