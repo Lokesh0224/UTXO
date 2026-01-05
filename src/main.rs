@@ -118,6 +118,23 @@ fn main() {
     }
 
     println!("Ledger after transaction:\n{:#?}", ledger);
+
+    //double txn
+    let tx2 = Transaction {
+        inputs: vec![TxInput {
+            utxo_id: "genesis".to_string(),
+        }],
+        outputs: vec![TxOutput {
+            owner: "Charlie".to_string(),
+            amount: 50,
+        }],
+    };
+
+    println!("\nAttempting Double Spend");
+    match ledger.apply_tx(tx2) {
+        Ok(_) => println!("Transaction applied (unexpected!)."),
+        Err(e) => println!("Transaction rejected: {}", e),
+    }
     
 }
 
